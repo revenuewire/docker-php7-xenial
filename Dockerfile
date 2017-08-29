@@ -13,6 +13,10 @@ ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOG_DIR /var/log/apache2
 
+# logs should go to stdout / stderr
+RUN ln -sf /dev/stdout $APACHE_LOG_DIR/access.log && \
+    ln -sf /dev/stderr $APACHE_LOG_DIR/error.log
+
 RUN rm -rf /var/www/html/* && echo '<?php phpinfo(); ?>' > /var/www/html/index.php
 
 EXPOSE 80
