@@ -25,6 +25,7 @@ RUN ln -sf /dev/stdout $APACHE_LOG_DIR/access.log && \
     ln -sf /dev/stderr $APACHE_LOG_DIR/error.log
 
 RUN rm -rf /var/www/html/* && echo '<?php phpinfo(); ?>' > /var/www/html/index.php
+RUN a2enmod http2
 
 EXPOSE 80
 COPY httpd.sh /usr/bin/httpd.sh
