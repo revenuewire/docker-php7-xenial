@@ -1,9 +1,20 @@
-FROM ubuntu:xenial
+FROM ubuntu:xenial-20180123
 
-RUN apt-get update && apt-get upgrade -y \
-    && apt-get install -y vim zip curl apache2 libapache2-mod-php7.0 php7.0 php7.0-opcache php7.0-mcrypt \
+ENV OS_LOCALE="en_US.UTF-8"
+ENV LANG=${OS_LOCALE} \
+    LANGUAGE=en_US:en \
+    LC_ALL=${OS_LOCALE}
+
+RUN apt-get update \
+    && apt-get install -y locales vim zip curl apache2 libapache2-mod-php7.0 php7.0 php7.0-opcache php7.0-mcrypt \
     php7.0-mysql php7.0-cli php7.0-xml php7.0-simplexml php7.0-mbstring php7.0-curl php7.0-intl \
     php-apcu php7.0-gd php7.0-bcmath
+RUN locale-gen ${OS_LOCALE}
+
+# Update Apache 2 to latest version
+RUN apt-get install software-properties-common python-software-properties -y \
+    && add-apt-repository -y ppa:ondrej/apache2 \
+    && apt-get update && apt-get upgrade -y && apt-get install apache2 -y
 
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
