@@ -16,6 +16,7 @@ RUN apt-get install software-properties-common python-software-properties -y \
     && add-apt-repository -y ppa:ondrej/apache2 \
     && apt-get update && apt-get upgrade -y && apt-get install apache2 -y
 
+RUN a2enmod rewrite
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOG_DIR /var/log/apache2
