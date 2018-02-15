@@ -5,10 +5,6 @@ RUN apt-get update -y \
     php7.0-mysql php7.0-cli php7.0-xml php7.0-simplexml php7.0-mbstring php7.0-curl php7.0-intl \
     php-apcu php7.0-gd php7.0-bcmath
 
- # Configure apache
-RUN a2enmod rewrite
-RUN a2enmod ssl
-
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOG_DIR /var/log/apache2
