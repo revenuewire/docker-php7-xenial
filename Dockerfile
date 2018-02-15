@@ -1,6 +1,6 @@
 FROM ubuntu:xenial
 
-RUN apt-get update -y \
+RUN apt-get update && apt-get upgrade -y \
     && apt-get install -y vim zip curl apache2 libapache2-mod-php7.0 php7.0 php7.0-opcache php7.0-mcrypt \
     php7.0-mysql php7.0-cli php7.0-xml php7.0-simplexml php7.0-mbstring php7.0-curl php7.0-intl \
     php-apcu php7.0-gd php7.0-bcmath
