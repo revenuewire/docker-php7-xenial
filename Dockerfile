@@ -29,7 +29,9 @@ COPY apache2.conf /etc/apache2/apache2.conf
 RUN ln -sf /dev/stdout $APACHE_LOG_DIR/access.log && \
     ln -sf /dev/stderr $APACHE_LOG_DIR/error.log
 
-RUN rm -rf /var/www/html/* && echo 'OK' > /var/www/html/index.php
+RUN rm -rf /var/www/html/*
+COPY index.php /var/www/html/index.php
+
 EXPOSE 80
 COPY httpd.sh /usr/bin/httpd.sh
 RUN chmod 777 /usr/bin/httpd.sh
