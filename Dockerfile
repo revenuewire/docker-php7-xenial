@@ -16,6 +16,9 @@ RUN apt-get install software-properties-common python-software-properties -y \
     && add-apt-repository -y ppa:ondrej/apache2 \
     && apt-get update && apt-get upgrade -y && apt-get install apache2 -y
 
+# Run any updates that needed
+RUN apt-get upgrade libshiro-java -y
+
 RUN a2enmod rewrite
 RUN a2enmod headers
 

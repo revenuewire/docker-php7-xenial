@@ -1,7 +1,7 @@
 <?php
 
 if ($_SERVER['REQUEST_URI'] === '/') {
-    echo "Hello v2.0.1 ", getenv('NETWORK_REGION');
+    echo "Hello v2.0.2 ", getenv('NETWORK_REGION');
     return;
 }
 
