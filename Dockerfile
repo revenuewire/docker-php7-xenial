@@ -23,7 +23,11 @@ ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOG_DIR /var/log/apache2
 
-COPY apache2.conf /etc/apache2/apache2.conf
+COPY apache2/apache2.conf /etc/apache2/apache2.conf
+COPY apache2/conf-available/security.conf /etc/apache2/conf-available/security.conf
+COPY apache2/mods-available/mpm_prefork.conf /etc/apache2/mods-available/mpm_prefork.conf
+COPY apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY php/7.0/apache2/php.ini /etc/php/7.0/apache2/php.ini
 
 # logs should go to stdout / stderr
 RUN ln -sf /dev/stdout $APACHE_LOG_DIR/access.log && \
